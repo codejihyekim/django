@@ -22,27 +22,21 @@ if __name__ == '__main__':
         if menu == '0':
             break
         else:
-            while 1:
-                menu = int(input('0.exit 1.+ 2.- 3.* 4./'))
-                if menu == 0:
-                    break
-                else:
-                    if menu < 5:
-                        num1 = int(input('첫번째 수'))
-                        num2 = int(input('두번째 수'))
-                        # 객체생성
-                        calc = Calculator(num1, num2)
-                        print('*' * 30)
-                        if menu == 1:
-                            print(f'{calc.num1} + {calc.num2} = {calc.add()}')
-                        if menu == 2:
-                            print(f'{calc.num1} - {calc.num2} = {calc.sub()}')
-                        if menu == 3:
-                            print(f'{calc.num1} * {calc.num2} = {calc.mul()}')
-                        if menu == 4:
-                            print(f'{calc.num1} / {calc.num2} = {calc.did()}')
-                    else:
-                        print("1~4까지 숫자를 입력해주세요")
+            num1 = int(input('첫번째 수'))
+            num2 = int(input('두번째 수'))
+            opcode = input('연산자')
+            # 객체생성
+            calc = Calculator(num1, num2)
+            print('*' * 30)
+            if opcode == "+":
+                print(f'{calc.num1} + {calc.num2} = {calc.add()}')
+            elif opcode == "-":
+                print(f'{calc.num1} - {calc.num2} = {calc.sub()}')
+            elif opcode == "*":
+                print(f'{calc.num1} * {calc.num2} = {calc.mul()}')
+            elif opcode == "/":
+                print(f'{calc.num1} / {calc.num2} = {calc.did()}')
+
 
 
 

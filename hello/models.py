@@ -2,7 +2,8 @@ import random
 
 def main():
     while 1:
-        menu = input('0.Exit 1.연산자 2.BMI 3.Grade 4.AutoGrade 5.Quiz05Dice 6.Quiz06RandomGenerator 7.Quiz07RandomChoice 8.')
+        menu = input('0.Exit\n 1.연산자\n 2.BMI\n 3.Grade\n 4.AutoGrade\n 5.주사위\n '
+                     '6.랜덤숫자\n 7.수강생\n 8.가위바위보\n 9.소수\n 10.년도\n 11.숫자맞추기\n')
         if menu == '0':
             break
         elif menu == '1': # 계산기
@@ -27,16 +28,24 @@ def main():
             print(f'{grade.name}님의 총점: {grade.sum()} 평균: {grade.avg()}으로 {grade.pas()}입니다.')
         elif menu == '5':
             q5 = Quiz05Dice()
-            print(f'결과: {q5.getNum()}')
+            print(f'결과: {Quiz05Dice.cast()}')
         elif menu == '6':
-            q6 = Quiz06RandomGenerator(int(input('start')),int(input('end')))
-            print(f'결과: {q6.getNum()}')
+            pass
         elif menu == '7':
             q7 = Quiz07RandomChoice()
-            print(f'결과: {q7.member()}')
+            print(f'결과: {q7.chooseMember()}')
         elif menu == '8':
-            q8 = Quiz08Rps()
-
+            q8 = Quiz08Rps(int(input('가위: 1 바위: 2 보: 3')))
+            print(f'결과: com {q8.com}로 {q8.game()}')
+        elif menu == '9':
+            q9 = Quiz09GetPrime(int(input('startnum')), int(input('endnum')))
+            print(f'결과: {q9.getPrime()}')
+        elif menu == '10':
+            q10 = Quiz10LeapYear(int(input('년도 입력')))
+            print(f'입력한 년도는 {q10.leapYear()}')
+        elif menu == '11':
+            q11 = Quiz11NumberGolf()
+            print(f'결과: {q11.game()}')
 
 class Quiz01Calculator:
     def __init__(self, num1, num2, op):
@@ -135,23 +144,19 @@ class Quiz04GradeAuto(object):
             return f'불합격'
 
 
+def myRandom(start, end):
+    return random.randint(start, end)
+
+
 class Quiz05Dice(object):
 
-    def __init__(self):
-        pass
-
-    def getNum(self):
-        return random.randint(1, 6)
+    @staticmethod
+    def cast():
+        return myRandom(1, 6)
 
 
 class Quiz06RandomGenerator(object):
-
-    def __init__(self, start, end):
-        self.start = start
-        self.end = end
-
-    def getNum(self):
-        return random.randint(self.start, self.end)
+    pass
 
 
 class Quiz07RandomChoice(object):
@@ -162,28 +167,72 @@ class Quiz07RandomChoice(object):
                        '최민서', '한성수', '김윤섭', '김승현',
                        "강 민", "최건일", "유재혁", "김아름", "장원종"]
 
-    def member(self):
-        return random.choice(self.members)
+    def chooseMember(self):
+        ran = myRandom(0, 23)
+        return self.members[ran]
 
 
 class Quiz08Rps(object):
-    def __init__(self):
-        pass
+
+    def __init__(self, user):
+        self.user = user
+        self.com = myRandom(1, 3)
+
+    def game(self):
+        score = self.user - self.com
+        if score == 0:
+            res = '비겼습니다.'
+        elif score == 1 or score == -2:
+            res = '이겼습니다.'
+        else:
+            res = '졌습니다.'
+        return res
 
 
 class Quiz09GetPrime(object):
-    def __init__(self):
-        pass
+
+    def __init__(self, num1, num2):
+        self.num1 = num1
+        self.num2 = num2
+
+    def getPrime(self):
+        count = 0
+        for i in range(self.num1, self.num2+1):
+            for j in range(1, i+1):
+                if i % j == 0:
+                    count += 1
+        if count <= 2:
+            return i
 
 
 class Quiz10LeapYear(object):
-    def __init__(self):
-        pass
+    def __init__(self, year):
+        self.year = year
+
+    def leapYear(self):
+        if self.year % 4 == 0 and self.year % 10 != 0 or self.year % 400 == 0 :
+            res = '윤년입니다.'
+        else:
+            res = '평년입니다.'
+        return res
 
 
 class Quiz11NumberGolf(object):
+
     def __init__(self):
-        pass
+        self.comNum = myRandom(1, 100)
+
+    def game(self):
+        while 1:
+            userNum = int(input('숫자입력'))
+            if userNum == self.comNum:
+                return '정답입니다.'
+            elif userNum > self.comNum:
+                print('더 작은 수를 입력하세요')
+            elif userNum < self.comNum:
+                print('더 큰 수를 입력하세요')
+            else:
+                print('잘못 입력하셨습니다.')
 
 
 class Quiz12Lotto(object):

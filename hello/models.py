@@ -141,20 +141,19 @@ class Quiz08Rps(object):
 
 class Quiz09GetPrime(object):
 
-    def __init__(self, num1, num2):
-        self.num1 = num1
-        self.num2 = num2
-
     def getPrime(self):
-        count = 0
+        num1 = int(input('시작숫자'))
+        num2 = int(input('끝숫자'))
         res = ''
-        for i in range(self.num1, self.num2+1):
+        for i in range(num1, num2+1):
+            count = 0
             for j in range(1, i+1):
                 if i % j == 0:
                     count += 1
             if count <= 2:
                 res += str(i) + ' '
         return res
+
 
 class Quiz10LeapYear(object):
     def __init__(self, year):
@@ -187,25 +186,57 @@ class Quiz11NumberGolf(object):
 
 
 class Quiz12Lotto(object):
-    def __init__(self):
-        pass
+
+    @staticmethod
+    def lotto():
+
+        a = random.sample(range(1, 46), 6)
+        a.sort()
+        return a
 
 
 class Quiz13Bank(object): # 이름, 입금, 출금만 구현
 
-    def __init__(self, name, money, totalmoney):
-        self.name = name
-        self.money = money
-        self.totalmoney = totalmoney
+    def __init__(self):
+        self.total = 0
 
-    def bank(self):
-        pass
+    def save(self, money):
+        self.total += money
+        print(f'{money}를 예금하였습니다.')
+
+    def pay(self, money):
+        if self.total <= money:
+            print(f'잔고가 없습니다.')
+            return
+        else:
+            self.total -= money
+            print(f'{money}를 출금하였습니다.')
+
+    def balance(self):
+
+        while 1:
+            menu = int(input('0.Exit 1.예금 2.출금 3.잔금'))
+            if menu == 0:
+                return f'종료'
+            elif menu == 1:
+                self.save(int(input('금액을 입력해주세요')))
+            elif menu == 2:
+                self.pay(int(input('금액을 입력해주세요')))
+            elif menu == 3:
+                print(f'현재 잔금은 {self.total}입니다.')
 
 
 class Quiz14Gugudan(object): # 책받침구구단
-    def __init__(self):
-        pass
 
+    def gugudan(self):
+        res = ''
+        for i in range(2, 9, 4):
+            for j in range(1, 10):
+                for k in range(i, i+4):
+                    res += f'{k}*{j}={k*j}'+'\t'
+                res += '\n'
+            res += '\n'
+        return res
 
 
 

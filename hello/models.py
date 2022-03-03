@@ -1,52 +1,5 @@
 import random
 
-def main():
-    while 1:
-        menu = input('0.Exit\n 1.연산자\n 2.BMI\n 3.Grade\n 4.AutoGrade\n 5.주사위\n '
-                     '6.랜덤숫자\n 7.수강생\n 8.가위바위보\n 9.소수\n 10.년도\n 11.숫자맞추기\n')
-        if menu == '0':
-            break
-        elif menu == '1': # 계산기
-            # 객체생성
-            calc = Quiz01Calculator(int(input('첫번째 수')), int(input('두번째 수')), input('연산자'))
-            print('*' * 30)
-            print(f'{calc.num1} {calc.op} {calc.num2} = {calc.res()}')
-
-        elif menu == '2': #BMI
-            bmi = Quiz02Bmi(input('이름'), int(input('키')), int(input('몸무게')))
-            print(f'{bmi.name}님의 BMI는 {bmi.getBmi()}입니다.')
-
-        elif menu == '3': #Grade
-            grade = Quiz03Grade(input('이름'), int(input('국어')), int(input('영어')), int(input('수학')))
-            print('*' * 30)
-            print(f'{grade.name}님의 총점: {grade.sum()} 평균: {grade.avg()}으로 {grade.pas()}입니다.')
-        elif menu == '4':
-            for i in ['국어', '영어', '수학']:
-                print(i)
-            #grade = Quiz03Grade(input('이름'), int(input('국어')), int(input('영어')), int(input('수학')))
-            print('*' * 30)
-            print(f'{grade.name}님의 총점: {grade.sum()} 평균: {grade.avg()}으로 {grade.pas()}입니다.')
-        elif menu == '5':
-            q5 = Quiz05Dice()
-            print(f'결과: {Quiz05Dice.cast()}')
-        elif menu == '6':
-            pass
-        elif menu == '7':
-            q7 = Quiz07RandomChoice()
-            print(f'결과: {q7.chooseMember()}')
-        elif menu == '8':
-            q8 = Quiz08Rps(int(input('가위: 1 바위: 2 보: 3')))
-            print(f'결과: com {q8.com}로 {q8.game()}')
-        elif menu == '9':
-            q9 = Quiz09GetPrime(int(input('startnum')), int(input('endnum')))
-            print(f'결과: {q9.getPrime()}')
-        elif menu == '10':
-            q10 = Quiz10LeapYear(int(input('년도 입력')))
-            print(f'입력한 년도는 {q10.leapYear()}')
-        elif menu == '11':
-            q11 = Quiz11NumberGolf()
-            print(f'결과: {q11.game()}')
-
 class Quiz01Calculator:
     def __init__(self, num1, num2, op):
         self.num1 = num1
@@ -77,14 +30,10 @@ class Quiz01Calculator:
 
 
 class Quiz02Bmi:
-
-    def __init__(self, name, height, weight):
-        self.name = name
-        self.height = height
-        self.weight = weight
-
-    def getBmi(self):
-        b = self.weight / (self.height * self.height) * 10000
+    @staticmethod
+    def getBmi(member):
+        this = member
+        b = this.weight / (this.height * this.height) * 10000
         if b >= 35:
             res = '고도비만'
         elif b >= 30:
@@ -176,16 +125,17 @@ class Quiz08Rps(object):
 
     def __init__(self, user):
         self.user = user
-        self.com = myRandom(1, 3)
+        self.com = myRandom(0, 2)
 
     def game(self):
+        rps = ['가위', '바위', '보']
         score = self.user - self.com
         if score == 0:
-            res = '비겼습니다.'
+            res = f' com:{rps[self.com]} user:{rps[self.user]}으로 비겼습니다.'
         elif score == 1 or score == -2:
-            res = '이겼습니다.'
+            res = f' com:{rps[self.com]} user:{rps[self.user]}으로 이겼습니다.'
         else:
-            res = '졌습니다.'
+            res = f' com:{rps[self.com]} user:{rps[self.user]}으로 졌습니다.'
         return res
 
 
@@ -197,13 +147,14 @@ class Quiz09GetPrime(object):
 
     def getPrime(self):
         count = 0
+        res = ''
         for i in range(self.num1, self.num2+1):
             for j in range(1, i+1):
                 if i % j == 0:
                     count += 1
-        if count <= 2:
-            return i
-
+            if count <= 2:
+                res += str(i) + ' '
+        return res
 
 class Quiz10LeapYear(object):
     def __init__(self, year):
@@ -241,7 +192,13 @@ class Quiz12Lotto(object):
 
 
 class Quiz13Bank(object): # 이름, 입금, 출금만 구현
-    def __init__(self):
+
+    def __init__(self, name, money, totalmoney):
+        self.name = name
+        self.money = money
+        self.totalmoney = totalmoney
+
+    def bank(self):
         pass
 
 
@@ -251,7 +208,5 @@ class Quiz14Gugudan(object): # 책받침구구단
 
 
 
-if __name__ == '__main__':
-    main()
 
 

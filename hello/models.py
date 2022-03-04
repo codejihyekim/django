@@ -140,8 +140,8 @@ class Quiz08Rps(object):
 
 
 class Quiz09GetPrime(object):
-
-    def getPrime(self):
+    @staticmethod
+    def getPrime():
         num1 = int(input('시작숫자'))
         num2 = int(input('끝숫자'))
         res = ''
@@ -227,8 +227,8 @@ class Quiz13Bank(object): # 이름, 입금, 출금만 구현
 
 
 class Quiz14Gugudan(object): # 책받침구구단
-
-    def gugudan(self):
+    @staticmethod
+    def gugudan():
         res = ''
         for i in range(2, 9, 4):
             for j in range(1, 10):

@@ -1,5 +1,6 @@
 from hello.domains import Member
-
+from hello.models import Quiz01Calculator, Quiz02Bmi, Quiz05Dice, Quiz08Rps, Quiz10LeapYear, Quiz03Grade, \
+    Quiz07RandomChoice, Quiz12Lotto, Quiz13Bank, Quiz14Gugudan, Quiz11NumberGolf, Quiz09GetPrime
 
 if __name__ == '__main__':
     while 1:

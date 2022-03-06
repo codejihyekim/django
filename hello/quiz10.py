@@ -5,7 +5,18 @@ from hello.domains import my100, myRandom, members
 
 class Quiz10:
 
-    def quiz10bubble(self) -> str: return None
+    def quiz10bubble(self) -> str:
+        arr = []
+        for i in range(0, 10):
+            a = my100()
+            if a not in arr:
+                arr.append(a)
+        for i in range(0, len(arr)):
+            for j in range(0, len(arr)-1):
+                if arr[j] > arr[j+1]:
+                    arr[j], arr[j+1] = arr[j+1], arr[j]
+        print(f'버블정렬: {arr}')
+
 
     def quiz11insertion(self) -> str: return None
 

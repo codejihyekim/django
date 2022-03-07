@@ -71,11 +71,8 @@ class Quiz00:
 
     def quiz04leap(self):
         year = myRandom(1, 10000)
-        if year % 4 == 0 and year % 10 != 0 or year % 400 == 0 :
-            res = '윤년입니다.'
-        else:
-            res = '평년입니다.'
-        print(f'{year}년도는 {res}')
+        s = "윤년" if year % 4 == 0 and year % 100 != 0 or year % 400 == 0 else "평년"
+        print(f'{year}년도는 {s}')
 
     def quiz05grade(self):
         kor = myRandom(1, 100)
@@ -109,7 +106,8 @@ class Quiz00:
         print(a)
 
     def quiz08bank(self): # 이름, 입금, 출금만 구현
-        total =0
+        print(f'{Account().to_string()}')
+        total = 0
         while 1:
             menu = int(input('0.Exit 1.예금 2.출금 3.잔금'))
             money = myRandom(1, 10000)
@@ -126,6 +124,7 @@ class Quiz00:
         total += money
         print(f'{money}를 예금하였습니다.')
         return total
+
     def pay(self, money, total):
         if total < money:
             print(f'잔고가 없습니다.')
@@ -133,6 +132,7 @@ class Quiz00:
             total -= money
             print(f'{money}를 출금하였습니다.')
         return total
+
 
     def quiz09gugudan(self): # 책받침구구단
         res = ''
@@ -143,4 +143,46 @@ class Quiz00:
                 res += '\n'
             res += '\n'
         print(res)
+
+'''
+08번 문제 해결을 위한 클래스는 다음과 같다.
+[요구사항(RFP)]
+은행이름은 Bitbank
+입금자 이름(name), 계좌번호(account_number), 금액(money) 속성값으로 계좌를 생성한다.
+계좌번호는 3자리-2자리-6자리 형태로 랜덤하게 생성된다.
+예를 들면 123-12-123456 이다.
+금액은 100만원 ~ 999만원 사이로 랜덤하게 입금된다. 
+'''
+class Account(object):
+    def __init__(self):
+        self.BANK_NAME = '비트은행'
+        self.name = members()[myRandom(0, 23)]
+        a = str(myRandom(0, 999))
+        b = str(myRandom(0, 99))
+        c = str(myRandom(0, 999999))
+        # self.account_number = f'{str(a.rjust(3,"0"))}-{str(b.rjust(2,"0"))}-{str(c.rjust(6,"0"))}'
+        self.account_number = self.creat_account_number()
+        self.money = myRandom(100, 999)
+
+    def to_string(self):
+        return f'은행: {self.BANK_NAME} \t' \
+               f'입금자: {self.name} \t' \
+               f'계좌번호: {self.account_number} \t' \
+               f'금액: {self.money}만원'
+
+    @staticmethod
+    def creat_account_number():
+        '''
+        ls = [str(myRandom(0, 10)) for i in range(3)]
+        ls.append("-")
+        ls += [str(myRandom(0, 10)) for i in range(2)]
+        ls.append("-")
+        ls += [str(myRandom(0, 10)) for i in range(6)]
+        return "".join(ls)
+        '''
+
+        # return "".join([str(myRandom(0, 9)) if i != 3 and i != 6 else "-" for i in range(13)])
+        return "".join(["-" if i == 3 or i == 6 else str(myRandom(0, 9)) for i in range(13)])
+
+
 

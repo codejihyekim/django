@@ -18,9 +18,36 @@ class Quiz10:
         print(f'버블정렬: {arr}')
 
 
-    def quiz11insertion(self) -> str: return None
+    def quiz11insertion(self) -> str:
+        arr = []
+        for i in range(0, 10):
+            a = my100()
+            if a not in arr:
+                arr.append(a)
+        for i in range(1, len(arr)):
+            temp = i
+            while temp > 0 and arr[temp-1] > arr[temp]:
+                arr[temp-1], arr[temp] = arr[temp], arr[temp -1]
+                temp -= 1
+        print(f'삽입정렬: {arr}')
 
-    def quiz12selection(self) -> str: return None
+
+
+    def quiz12selection(self) -> str:
+        arr = []
+        for i in range(0, 10):
+            a = my100()
+            if a not in arr:
+                arr.append(a)
+        for i in range(0, len(arr)-1):
+            min = i
+            for j in range(i+1, len(arr)):
+                if arr[min] > arr[j]:
+                    min = j
+            arr[min], arr[i] = arr[i], arr[min]
+        print(f'선택정렬: {arr}')
+
+
 
     def quiz13quick(self) -> str: return None
 

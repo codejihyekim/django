@@ -48,7 +48,7 @@ class Quiz10:
         print(f'선택정렬: {arr}')
 
 
-
+    # https://seongonion.tistory.com/37
     def quiz13quick(self) -> str: return None
 
     def quiz14merge(self) -> str: return None

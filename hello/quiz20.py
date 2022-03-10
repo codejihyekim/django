@@ -1,8 +1,10 @@
 import random
 import urllib.request
 
+
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
+
 
 class Quiz20:
 
@@ -80,10 +82,33 @@ class Quiz20:
         url = 'https://music.bugs.co.kr/chart/track/realtime/total'
         html_doc = urlopen(url)
         soup = BeautifulSoup(html_doc, 'lxml') # html.parser vs lxml
-        artists = soup.find_all('p', {'class':'artist'})
+        '''
+        artists = soup.find_all('p', {'class': 'artist'})
         artists = [i.get_text() for i in artists]
-        print(''.join(i for i in artists))
+        #print(''.join(i for i in artists))
         # print(soup.prettify())
+        # print(type(artists)
+        titles = soup.find_all('p', {'class': 'title'})
+        titles = [i for i in titles]
+        print('\n'.join(i.get_text().strip() for i in titles))
+        '''
+        for i, j in enumerate(['artist', 'title']):
+            print('\n\n\n'.join(i for i in [i for i in self.find(soup, j)]))
+            print('*'*100)
+        # a = [i for i in self.find(soup, 'artist')]
+        # a = [i for i in self.find(soup, 'title')]
+        '''
+        self.find(soup, 'p', 'class', 'artist')
+        print('*'*100)
+        self.find(soup, 'p', 'class', 'title')
+        '''
+
+    @staticmethod
+    def find(soup, a) -> str:
+        ag = soup.find_all('p', {'class': a})
+        ag = [i.get_text() for i in ag]
+        # print('\n'.join(i.get_text().strip() for i in ag))
+        return ag
 
 
     def quiz25dictcom(self) -> str: return None
@@ -96,9 +121,14 @@ class Quiz20:
         req = urllib.request.Request(url, headers = headers)
         soup = BeautifulSoup(urlopen(req).read(), 'lxml')
         songs = soup.find_all('div', {'class':'ellipsis rank01'})
-        songs = [i.get_text() for i in songs]
-        print(''.join(i for i in songs))
+        songs = [i for i in songs]
+        print('\n'.join(i.get_text().strip() for i in songs))
 
-    def quiz28(self) -> str: return None
+    def quiz28(self) -> str:
+        a = [i if i == 0 or i == 0 else i for i in range()]
+        b = [i if i == 0 or i == 0 else i for i in []]
+        c = [(i, j) for i, j in enumerate([])]
+        d = ''.join(i for i in [])
+        return None
 
     def quiz29(self) -> str: return None

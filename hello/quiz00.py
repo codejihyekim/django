@@ -194,12 +194,22 @@ class Account(object):
                 a = ls[i]
                 break
         return a
+
+    @staticmethod
+    def paymoney(ls, account_number, paymoney):
+        for i, j in enumerate(ls):
+            if j.account_number == account_number:
+                j.money -= paymoney
+                b = ls[i]
+                break
+        return b
     @staticmethod
     def find_account(ls, account_number):
         '''
         for i, j in enumerate(ls):
             if j.account_number == account_number:
-                print(ls[i].to_string())
+                a = ls[i].to_string()
+        return a
         '''
         return ''.join([j.to_string() if j.account_number == account_number else '찾는 계좌 아님' for i, j in enumerate(ls)])
     @staticmethod
@@ -226,9 +236,8 @@ class Account(object):
                 a = Account.deposit(ls, input('입금할 계좌 번호'), int(input('입금액')))
                 print(a.to_string())
             elif menu == '4':
-                account_number = input('출금할 계좌번호')
-                money = input('출금액')
-
+                b = Account.paymoney(ls, input('출금할 계좌 번호'), int(input('출금액')))
+                print(b.to_string())
             elif menu == '5':
                 Account.del_account(ls, input('탈퇴할 계좌번호'))
             elif menu == '6':

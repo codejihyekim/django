@@ -96,7 +96,8 @@ class Quiz00:
             res = '불합격'
         return res
 
-    def quiz06memberChoice(self):
+    @staticmethod
+    def quiz06memberChoice():
         return members()[myRandom(0, 23)]
 
 

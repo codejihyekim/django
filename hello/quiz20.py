@@ -4,6 +4,8 @@ import urllib.request
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import pandas as pd
+from hello.domains import my100, myRandom, members
+from hello.quiz00 import Quiz00
 
 class Quiz20:
 
@@ -92,16 +94,25 @@ class Quiz20:
             print('\n\n\n'.join(i for i in [i for i in self.find(soup, j)]))
             print('*'*100)
         '''
-        dict = {}
+
         ls1 = self.find(soup, 'title')
         ls2 = self.find(soup, 'artist')
+        dt = {i: j for i, j in zip(ls1, ls2)}
+        l = [i + j for i, j in zip(ls1, ls2)]
+        l2 = dict(zip(ls1, ls2))
+        d1 = dict(zip(ls1, ls2))
+        print(d1)
+        return d1
         # self.dict1(ls1, ls2)
         # self.dict2(ls1, ls2)
+        # self.dict3(ls1, ls2)
+
+    @staticmethod
+    def dict3(ls1, ls2) -> None:
+        dict = {}
         for i, j in zip(ls1, ls2):
             dict[i] = j
         print(dict)
-        return dict
-
 
     @staticmethod
     def dict2(ls1, ls2) -> None:
@@ -143,8 +154,17 @@ class Quiz20:
                 print(f'{i}위 : {j}')
             print('#' * 100)
 
-
-    def quiz25dictcom(self) -> str: return None
+    @staticmethod
+    def quiz25dictcom() -> str:
+        m = Quiz00()
+        s = set([m.quiz06memberChoice() for i in range(5)])
+        while len(s) < 5:
+            s.add(m.quiz06memberChoice())
+        students = list(s)
+        scores = [myRandom(1, 100) for i in range(5)]
+        grades = {i: j for i, j in zip(students, scores)}
+        print(grades)
+        return None
 
     def quiz26map(self) -> str: return None
 
@@ -180,4 +200,6 @@ class Quiz20:
         df.to_csv('./save/melon.csv', sep=',', na_rep='NaN')
 
 
-    def quiz29(self) -> str: return None
+    def quiz29(self) -> str:
+        
+        return None

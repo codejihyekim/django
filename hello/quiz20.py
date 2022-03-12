@@ -1,4 +1,5 @@
 import random
+import string
 import urllib.request
 
 from bs4 import BeautifulSoup
@@ -199,7 +200,26 @@ class Quiz20:
         print(df)
         df.to_csv('./save/melon.csv', sep=',', na_rep='NaN')
 
+    ''' 
+    다음 결과 출력
+        a   b   c
+    1   1   3   5
+    2   2   4   6   
+    '''
+    def quiz29_pandas_01(self) -> object:
+        d1 = {'a': [1, 2], 'b': [3, 4], 'c': [5, 6]}
+        df1 = pd.DataFrame(d1, index=[1, 2])
+        d2 = {'1': [1, 3, 5], '2': {2, 4, 6}}
+        df2 = pd.DataFrame.from_dict(d2, orient='index', columns=['a', 'b', 'c'])
 
-    def quiz29(self) -> str:
-        
+        c = [chr(i) for i in range(97, 100)]
+        b = []
+        d = []
+        [b.append(i) if i % 2 == 0 else d.append(i) for i in range(1, 7)]
+        d3 = ['1', '2']
+        d4 = [b, d]
+        d5 = {i: j for i, j in zip(d3, d4)}
+        df3 = pd.DataFrame.from_dict(d5, orient='index', columns=c)
+        print(df3)
+
         return None

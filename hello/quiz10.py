@@ -87,4 +87,22 @@ class Quiz10:
             else:
                 print('잘못 입력하셨습니다.')
 
-    def quiz19booking(self) -> str: return None
+    def quiz19booking(self) -> str:
+        size = 10
+        seats = ["0","0","0","0","0","0","0","0","0","0"]
+        while 1:
+            print("----------------")
+            for i in range(0, size):
+                print((i+1))
+            print('\n----------------')
+            print('원하는 좌석번호를 입력(종료 0): ')
+            s = myRandom(0, 10)
+            print(s)
+            if s == 0:
+                break
+            elif seats[s-1]== "0":
+                seats[s-1] = "1"
+                print('예약되었습니다.')
+            else:
+                print('이미 예약 된 자리입니다.')
+        return None

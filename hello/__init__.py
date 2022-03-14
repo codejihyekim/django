@@ -15,8 +15,8 @@ if __name__ == '__main__':
     while 1:
         menu = input("00계산기 01Bmi 02주사위 03가위바위보 04윤년 05성적표 06멤버선택 07로또 08입출금 09구구단\n"
                      "10버블 11삽입 12선택 13퀵 14병합 15매직 16지그재그 17직각별 18정삼각별 19예약\n"
-                     "20리스트 21튜플 22딕셔너리 23 24벅스뮤직(zip) 25dictcom 26 27멜론 28dataframe 29quiz29_pandas_01\n"
-                     "30 31 32 33 34 35 36 37 38 39\n")
+                     "20리스트 21튜플 22딕셔너리 23listcom 24벅스뮤직(zip) 25dictcom 26 27멜론 28dataframe 29quiz29_pandas_01\n"
+                     "30quiz30_df_4_by_3 31quiz31_rand_2_by_3 32quiz32_df_grade 33 34 35 36 37 38 39\n")
         if menu == '00': q0.quiz00calculator()
         elif menu == '01': q0.quiz01bmi()
         elif menu == '02': q0.quiz02dice()
@@ -50,13 +50,13 @@ if __name__ == '__main__':
         elif menu == '30': q3.quiz30_df_4_by_3()
         elif menu == '31': q3.quiz31_rand_2_by_3()
         elif menu == '32': q3.quiz32_df_grade()
-        elif menu == '33': q3.quiz33()
-        elif menu == '34': q2.quiz34()
-        elif menu == '35': q2.quiz35()
-        elif menu == '36': q2.quiz36()
-        elif menu == '37': q2.quiz37()
-        elif menu == '38': q2.quiz38()
-        elif menu == '39': q2.quiz39()
+        elif menu == '33': q3.quiz33_df_loc()
+        elif menu == '34': q3.quiz34()
+        elif menu == '35': q3.quiz35()
+        elif menu == '36': q3.quiz36()
+        elif menu == '37': q3.quiz37()
+        elif menu == '38': q3.quiz38()
+        elif menu == '39': q3.quiz39()
         elif menu == '40': q4.quiz40()
         elif menu == '41': q4.quiz41()
         elif menu == '42': q4.quiz42()

@@ -209,17 +209,52 @@ class Quiz20:
     def quiz29_pandas_01(self) -> object:
         d1 = {'a': [1, 2], 'b': [3, 4], 'c': [5, 6]}
         df1 = pd.DataFrame(d1, index=[1, 2])
-        d2 = {'1': [1, 3, 5], '2': {2, 4, 6}}
-        df2 = pd.DataFrame.from_dict(d2, orient='index', columns=['a', 'b', 'c'])
+        '''
+        df1 출력결과
+           a  b  c
+        1  1  3  5
+        2  2  4  6
+        '''
+        d2 = {'1': [1, 3, 5], '2': [2, 4, 6]}
+        df2 = pd.DataFrame(d2)
+        '''
+        df2 출력결과
+           1  2
+        0  1  2
+        1  3  4
+        2  5  6
+        '''
+        di3 = {'1': [1, 3, 5], '2': [2, 4, 6]}
+        df3 = pd.DataFrame.from_dict(di3, orient='index')
+        '''
+        df3 출력결과
+           0  1  2
+        1  1  3  5
+        2  2  4  6
+        '''
+        di4 = {'1': [1, 3, 5], '2': [2, 4, 6]}
+        df4 = pd.DataFrame.from_dict(di4, orient='index', columns=['A', 'B', 'C'])
+        '''
+        df4 출력결과
+           A  B  C
+        1  1  3  5
+        2  2  4  6
+        '''
 
-        c = [chr(i) for i in range(97, 100)]
-        b = []
-        d = []
-        [b.append(i) if i % 2 == 0 else d.append(i) for i in range(1, 7)]
-        d3 = ['1', '2']
-        d4 = [b, d]
-        d5 = {i: j for i, j in zip(d3, d4)}
-        df3 = pd.DataFrame.from_dict(d5, orient='index', columns=c)
-        print(df3)
+        c = [chr(i) for i in range(97, 100)]  # ['a','b','c']
+        evens = [] # 짝수 리스트
+        odds = [] # 홀수 리스트
+        [evens.append(i) if i % 2 == 0 else odds.append(i) for i in range(1, 7)]
+        d5 = ['1', '2']
+        d6 = [evens, odds]
+        d7 = {i: j for i, j in zip(d5, d6)}
+        df5 = pd.DataFrame.from_dict(d7, orient='index', columns=c)
+        '''
+        df5 출력결과
+           a  b  c
+        1  2  4  6
+        2  1  3  5
+        '''
+        print(df5)
 
         return None

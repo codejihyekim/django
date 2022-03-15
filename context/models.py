@@ -10,7 +10,6 @@ class Model:
         this.dname = './data/'
         this.sname = './save/'
 
-
     def new_model(self, fname) -> object:
         this = self.ds
         # index_col=0 해야 기존 index 값이 유지된다

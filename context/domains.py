@@ -5,12 +5,26 @@ from dataclasses import dataclass
 @dataclass
 class Dataset:
 
+    dname: str
+    sname: str
     context: str
     fname: str
     train: str
     test: str
     id: str
     label: str
+
+    @property
+    def dname(self) -> str: return self._dname
+
+    @dname.setter
+    def dname(self, dname): self._dname = dname
+
+    @property
+    def sname(self) -> str: return self._sname
+
+    @sname.setter
+    def sname(self, sname): self._sname = sname
 
     @property
     def context(self) -> str: return self._context

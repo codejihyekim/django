@@ -1,8 +1,8 @@
-from titanic.models import Model
-from titanic.domains import Dataset
+from context.models import Model
+from context.domains import Dataset
 
 
-class View:
+class TitanicView:
     model = Model()
     dataset = Dataset()
 

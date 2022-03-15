@@ -1,10 +1,10 @@
 
 
-from titanic.views import View
+from titanic.views import TitanicView
 
 if __name__ == '__main__':
 
-    view = View()
+    view = TitanicView()
     while 1:
         menu = input('1.전처리')
         if menu == '1':

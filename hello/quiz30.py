@@ -4,7 +4,7 @@ import string
 import pandas as pd
 from icecream import ic
 import numpy as np
-from titanic.models import Model
+from context.models import Model
 from hello.domains import myRandom, members
 
 
@@ -97,12 +97,9 @@ class Quiz30:
                 1  20  41  70  97
                 2  20  41  70  97
         '''
-        # grade.csv
-        model = Model()
-        grade_df = model.new_model('grade.csv')
-        ic(grade_df)
+
         '''
-        자바  파이썬  자바스크립트  SQL
+      자바  파이썬  자바스크립트  SQL
 홍정명  61   93      24   16
 노홍주  47   38      62   99
 전종현  93   89      12   49
@@ -128,22 +125,53 @@ class Quiz30:
 김아름  37    6      90   82
 장원종  40   16      31   44
         '''
-        '''
-        subj = ['자바', '파이썬', '자바스크립트', 'SQL']
-        sutu = members()
-        scores = np.random.randint(0, 100, (24, 4))
-        df = pd.DataFrame(scores, index=sutu, columns=subj)
-        ic(df)
-        df.to_csv('./save/mygrade.csv', sep=',', na_rep='NaN')
-        '''
 
+        subjects = ['자바', '파이썬', '자바스크립트', 'SQL']
+        students = members()
+        scores = np.random.randint(0, 100, (24, 4))
+        students_scores = {students: scores for students, scores in zip(students, scores)}
+        students_scores_df = pd.DataFrame.from_dict(students_scores, orient='index', columns=subjects)
+        ic(students_scores_df)
+        # students_scores_df.to_csv('./save/mygrade.csv', sep=',', na_rep='NaN')
+
+        # grade.csv
+        model = Model()
+        grade_df = model.new_model('grade.csv')
+        #ic(grade_df)
+
+        print('파이썬의 점수만 출력하시오')
+        python_scores = grade_df.loc[:, '파이썬']
+        ic(type(python_scores))
+        ic(python_scores)
+
+        print('q2. 조현국의 점수만 출력하시오')
+        cho_scores = grade_df.loc['조현국']
+        ic(type(cho_scores))
+        ic(cho_scores)
+
+        print('q3 조현국의 과목별 점수를 출력하시오')
+        cho_subjects_cores = grade_df.loc[['조현국']]
+        ic(type(cho_subjects_cores))
+        ic(cho_subjects_cores)
         return None
 
     @staticmethod
     def createDf(keys, vals, len):
         return pd.DataFrame([dict(zip(keys, vals)) for _ in range(len)])
 
-    def quiz34(self) -> str:
+    def quiz34_df_iloc(self) -> str:
+        '''
+        mydict = [{'a': 1, 'b': 2, 'c': 3, 'd': 4},
+          {'a': 100, 'b': 200, 'c': 300, 'd': 400},
+          {'a': 1000, 'b': 2000, 'c': 3000, 'd': 4000 }]
+        df = pd.DataFrame(mydict)
+        df
+             a     b     c     d
+        0     1     2     3     4
+        1   100   200   300   400
+        2  1000  2000  3000  4000
+        '''
+
         # ic(df2.iloc[0])
         '''
         ic| df2.iloc[0]: a    40

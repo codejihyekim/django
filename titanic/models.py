@@ -8,7 +8,6 @@ class TitanicModel(object):
     model = Model()
     dataset = Dataset()
 
-
     def preprocess(self, train_fname, test_fname):
         this = self.dataset
         that = self.model
@@ -19,7 +18,7 @@ class TitanicModel(object):
         this.train = this.train.drop('Survived', axis=1)
         # Entity에서 Object로 전환
         this = self.drop_feature(this, 'Ticket', 'Cabin', 'Parch', 'SibSp')
-
+        # self.kwargs_sample(name='이순신')
         '''
         this = self.name_nominal(this)
         this = self.pclass_ordinal(this)
@@ -53,15 +52,25 @@ class TitanicModel(object):
     @staticmethod
     def drop_feature(this, *feature) -> object:
         '''
-        a = [for i in feature]
-        this.train = this.train.drop(a, axis=1)
-        this.test = this.test.drop(a, axis=1)
+        for i in feature
+        this.train = this.train.drop(i, axis=1) # 다시 this.train에 저장하기 위해 변수 선언
+        this.test = this.test.drop(i, axis=1)
+        this.train.drop(i, axis=1, inplace=True) # inplace 키워드를 사용하면 제자리에서 삭제를 진행하기 때문에 변수 선언 안함
+        this.test.drop(i, axis=1, inplace=True)
         return this
+
+        for i in [this.tain, this.test]:
+            for j in feature:
+                i.drop(j, axis=1, inplace=True)
         '''
 
         # [j.drop(i, axis=1, inplace=True) for i in feature for j in [this.train, this.test]]
         [j.drop(list(feature), axis=1, inplace=True) for j in [this.train, this.test]]
         return this
+
+    @staticmethod
+    def kwargs_sample(**kwargs) ->None:
+        {print(''.join(f'key:{i}, val:{j}')) for i, j in kwargs.items()}
 
     @staticmethod
     def pclass_ordinal(this) -> object:

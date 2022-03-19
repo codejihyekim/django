@@ -29,6 +29,9 @@ class TitanicModel(object):
         this = self.drop_feature(this, 'Sex')
         this = self.embarked_nominal(this)
         this = self.age_ratio(this)
+        this = self.fare_ratio(this)
+        this = self.drop_feature(this, 'Fare')
+        this = self.drop_feature(this, 'Age')
         #this = self.name_nominal(this)
 
         '''
@@ -129,7 +132,19 @@ class TitanicModel(object):
 
     @staticmethod
     def fare_ratio(this) -> object:
+        train = this.train
+        test = this.test
+        age_mapping = {'1등석': 1, '2등석': 2, '3등석': 3, '4등석': 4}
+        test['Fare'] = this.test['Fare'].fillna(1)
+        labels = {'1등석', '2등석', '3등석', '4등석'}
+
+        for these in train, test:
+            these['FareBand'] = pd.qcut(these['Fare'], 4, labels=labels)
+            these['FareBand'] = these['FareBand'].map(age_mapping)
         return this
+
+        # print(f'qcut 으로 bins 값 설정 {this.train["FareBand"].head()}')
+        # bins = [-1, 8, 15, 31, np.inf]
 
     @staticmethod
     def sex_nominal(this) -> object:

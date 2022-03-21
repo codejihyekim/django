@@ -16,7 +16,6 @@ survived, pclass, sex, embarked 의 4개만 그리겠습니다.
 템플릿 메소드 패턴으로 구성하시오 
 '''
 
-
 class TitanicTemplates(object):
     dataset = Dataset()
     model = Model()

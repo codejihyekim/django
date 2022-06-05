@@ -41,7 +41,6 @@ class TitanicModel(object):
         ic(accuracy)
         return this
 
-
     def learning(self, train_fname, test_fname):
         this = self.preprocess(train_fname, test_fname)
         k_fold = self.create_k_fold()

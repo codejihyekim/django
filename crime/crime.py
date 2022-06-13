@@ -30,3 +30,13 @@ class Solution(Reader):
                 pass
             elif menu == '4':
                 pass
+    def save_police_pos(self):
+        pass
+    def save_cctv_pos(self):
+        pass
+    def save_police_norm(self):
+        pass
+    def folium_test(self):
+        pass
+    def draw_crime_map(self):
+        pass

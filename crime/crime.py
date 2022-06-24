@@ -5,7 +5,7 @@ from sklearn import preprocessing
 from context.domains import Reader, File
 import folium
 
-
+#검거율에 따른 cctv 설치 지역 확률
 class Solution(Reader):
 
     def __init__(self):

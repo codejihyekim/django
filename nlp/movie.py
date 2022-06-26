@@ -262,7 +262,7 @@ class Solution(Reader):
         training_set = self.load_corpus()
         #ic(training_set)
         counts = self.count_words(training_set)
-        #ic(counts)
+        ic(counts)
         self.train()
         self.classify(doc)
 
@@ -280,13 +280,14 @@ class Solution(Reader):
 
     def count_words(self, training_set):
         #학습데이터는 영화리뷰 본문, 평점으로 구성
+        # defaultdict는 기본값을 정의하고 키값이 없더라도 에러를 출력하지 않고 초기값을 설정
         counts = defaultdict(lambda : [0, 0])
         for point, doc in training_set:
             # 영화리뷰가 text 일때만 카운트
             if self.isNumber(doc) is False:
                 words = doc.split()
                 for word in words:
-                    counts[word][0 if point > 9 else 1] += 1
+                    counts[word][0 if point > 9 else 1] += 1 # 딕셔너리 구조
         return counts
 
     def isNumber(self, s):
@@ -325,15 +326,15 @@ class Solution(Reader):
         print('-------------- 훈련 시작 --------')
         training_set = self.load_corpus()
         # 범주0 (긍정) 과 범주1(부정) 문서의 수를 세어줌
-        num_class0 = len([1 for point, _ in training_set if point > 9])
-        num_class1 = len(training_set) - num_class0
+        num_class0 = len([1 for point, _ in training_set if point > 9]) # 긍정
+        num_class1 = len(training_set) - num_class0 # 부정
         # train
         word_counts = self.count_words(training_set)
         #print(word_counts)
         self.word_probs = self.word_probabilities(word_counts, num_class0, num_class1, self.k)
 
     def classify(self, doc):
-        return print(self.class0_probabilities(self.word_probs, doc))
+        return print(self.class0_probabilities(self.word_probs, doc)) # 긍정인지 부정인지 최종 결과 확률
 
     def ko_font(self):
         font_path = "C:/Windows/Fonts/malgunsl.ttf"
